@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'authentication',
 )
-
+GRAPPELLI_ADMIN_TITLE="GEAR"
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

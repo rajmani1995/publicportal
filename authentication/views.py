@@ -32,8 +32,8 @@ def _login(request):
         if user is not None:
             if user.is_active:
                 login(request,user)
-                messages.info(request,"User is active.Logged in!")
-                return HttpResponseRedirect('/login')
+                messages.info(request,"Welcome "+user.username)
+                return HttpResponseRedirect('/dashboard')
             else:
                 messages.warning(request,"User is inactive. Contact webmaster!")
                 return HttpResponseRedirect('/login')
@@ -61,7 +61,7 @@ def signup(request):
             profile.save()
             registered = True
         else:
-            print user_form.errors, profile_form.errors
+            print user_form.errors, profile_form.errors,request.POST
             messages.info(request,str(user_form.errors)+str(profile_form.errors))
     else:
         user_form = UserForm()
@@ -71,3 +71,6 @@ def signup(request):
 def _logout(request):
     logout(request)
     return HttpResponseRedirect('/login')
+
+def dashboard(request):
+    return render(request,'user/dashboard.html',{'title':request.user.username+"Dashboard"})
