@@ -61,14 +61,14 @@ WSGI_APPLICATION = 'publicportal.wsgi.application'
 
 
 DATABASES = {
-'default': {
-'ENGINE': 'django.db.backends.mysql',
-'NAME': 'gear_publicportal',
-'USER': 'root',
-'PASSWORD': 'root',
-'HOST': 'localhost',
-'PORT': '3036',
-}
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'gear_publicportal',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '3306',
+    }
 }
 
 
