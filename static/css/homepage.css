@@ -73,6 +73,11 @@ body{
 	padding-right:70px;
 }
 
+#map-part {
+	height: 100%;
+	margin-left: -550px;
+}
+
 /*#search_div input:focus{
 	background: black;
 }

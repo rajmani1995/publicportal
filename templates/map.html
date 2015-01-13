@@ -2,6 +2,31 @@
 <!-- homepage css-->
 <link rel="stylesheet" type="text/css" href="{% static "css/homepage.css" %}">
 <script type="text/javascript" src="{% static "js/homepage.js" %}"></script>
+<style>
+    #map-canvas {
+      height: 70%;
+    }
+</style>
+<script>
+  function initialize() {
+    var mapOptions = {
+      zoom: 8,
+      center: new google.maps.LatLng(-34.397, 150.644)
+    };
+
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  }
+
+  function loadScript() {
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' + 'callback=initialize';
+    document.body.appendChild(script);
+  }
+
+window.onload = loadScript;
+
+</script>
 
 <div class="row" id="mainbar" >
 	
@@ -27,8 +52,10 @@
 		</div>	
 
 	</div>
-
 	<div id="scrollbody">
+    <div class="col-lg-10" id="map-part">
+      <div id="map-canvas"></div>
+    </div>
 	</div>
 
 </div>
