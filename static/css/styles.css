@@ -1,9 +1,10 @@
 html,body{
   	height:100%;
+    font-family: lato;
 }
 
 body{
-  	padding-top:50px; /*padding for navbar*/
+  	/*padding-top:50px;*/ /*padding for navbar*/
 }
 
 .navbar-custom .icon-bar {
