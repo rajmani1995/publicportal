@@ -1,1 +1,4 @@
 *.pyc
+venv/*
+authentication/*.pyc
+publicportal/*.pyc
