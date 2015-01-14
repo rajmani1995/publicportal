@@ -1,9 +1,10 @@
 #footerwrap{
   width: 100%;
-  background: #2C3E50;
+  background: #168CCC;
   text-align: center;
   height: 260px;
   position:relative;
+  margin: 0;
   bottom: 0;
   left: 0;
 }
@@ -17,7 +18,15 @@
 .content-block{
   padding: 5px;
   padding-bottom: 180px;
+  height: 600px;
 }
-#footer-detail {
+#footer-detail >a{
   color: white;
+}
+
+.social-links{
+  font-size: 18px;
+}
+i{
+  margin:2px;
 }
