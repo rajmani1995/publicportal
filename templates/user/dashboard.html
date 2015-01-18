@@ -1,8 +1,37 @@
 {% extends "layout/header.html" %}
 {% block content %}
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
-		{% include "map.html" %}
+		<div class="col-lg-8">
+			{% include "map.html" %}
+		</div>
+		<div class="col-lg-4 pull-right">
+			<div id="sidecontent" class="row-fluid">
+				<div class="col-lg-4">
+					<img src="http://placehold.it/100x100" alt="">
+				</div>
+				<div class="col-lg-8">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus sint tenetur alias officia dolores mollitia ipsum voluptatum, consequatur nemo tempore labore aliquam ad rerum quia vero suscipit nostrum aliquid, adipisci.
+				</div>
+				<!-- <a href="#" class="btn btn-info btn-small">Problem</a> -->
+			</div>
+			<div id="sidecontent" class="row-fluid">
+				<div class="col-lg-4">
+					<img src="http://placehold.it/100x100" alt="">
+				</div>
+				<div class="col-lg-8">
+					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus sint tenetur alias officia dolores mollitia ipsum voluptatum, consequatur nemo tempore labore aliquam ad rerum quia vero suscipit nostrum aliquid, adipisci.
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
+<script>
+$(window).resize(function () {
+	var h = $(window).height(),
+        offsetTop = 0; // Calculate the top offset
+
+        $('#googlemaps').css('height', (h - offsetTop));
+    }).resize();
+</script>
 {% endblock %}

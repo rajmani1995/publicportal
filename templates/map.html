@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="{% static "css/homepage.css" %}">
 
 <!-- Include the Google Maps API library - required for embedding maps -->
-<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing"></script>
  
 <script type="text/javascript">
  
@@ -38,6 +38,31 @@ function showGoogleMaps() {
  
     map = new google.maps.Map(document.getElementById('googlemaps'),mapOptions);
 
+    // Drawing Manager
+
+  var drawingManager = new google.maps.drawing.DrawingManager({
+    // drawingMode: google.maps.drawing.OverlayType.MARKER,
+    drawingMode: null,
+    drawingControl: false,
+    drawingControlOptions: {
+      position: google.maps.ControlPosition.TOP_CENTER,
+      drawingModes: [
+        google.maps.drawing.OverlayType.CIRCLE
+      ]
+    },
+    circleOptions: {
+      center: center,
+      radius: rad,
+      strokeColor: "#FF0000",
+      strokeOpacity: 0.4,
+      strokeWeight: 2,
+      fillColor: "#FF0000",
+      fillOpacity: 0.05,
+      map: map
+    }
+  });
+  drawingManager.setMap(map);
+
     // Radius of the circle
     var rad = 3; // Radius of circle in miles.
     var center = latLng; // LatLng of center point of circle
@@ -57,17 +82,26 @@ function showGoogleMaps() {
       fillColor: "#FF0000",
       fillOpacity: 0.05,
       map: map
-    });
+    }).setEditable(true);
 
     // Show the default red marker at the location
     marker = new google.maps.Marker({
         position: latLng,
+        title: "Hyderabad",
         map: map,
         draggable: false,
         animation: google.maps.Animation.DROP
     });
+
+    marker['infowindow'] = new google.maps.InfoWindow({
+      content:"Hyderabad"
+    });
+
+    google.maps.event.addListener(marker, 'mouseover', function() {
+        this['infowindow'].open(map, this);
+    });
 }
- 
+
 google.maps.event.addDomListener(window, 'load', showGoogleMaps);
 </script>
 

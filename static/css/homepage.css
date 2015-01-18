@@ -87,6 +87,11 @@ body{
 	margin-left: -550px;
 }
 
+#sidecontent {
+	margin-top:2px;
+	padding-top: 10px;
+}
+
 /*#search_div input:focus{
 	background: black;
 }
