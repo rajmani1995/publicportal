@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'widget_tweaks',
     'authentication',
+    'foundation',
 )
 GRAPPELLI_ADMIN_TITLE="GEAR"
 MIDDLEWARE_CLASSES = (
