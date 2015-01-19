@@ -8,10 +8,12 @@
  
 // The latitude and longitude of your business / place
 var position = [17.3660, 78.4760];
+var position2 = [17.3655, 78.4517];
  
 function showGoogleMaps() {
  
     var latLng = new google.maps.LatLng(position[0], position[1]);
+    var latLng2 = new google.maps.LatLng(position2[0], position2[1]);
  
     var mapOptions = {
         zoom: 13, // initialize zoom level - the max value is 21
@@ -93,7 +95,19 @@ function showGoogleMaps() {
         animation: google.maps.Animation.DROP
     });
 
+    marker2 = new google.maps.Marker({
+        position: latLng2,
+        title: "Hyderabad",
+        map: map,
+        draggable: false,
+        animation: google.maps.Animation.DROP
+    });
+
     marker['infowindow'] = new google.maps.InfoWindow({
+      content:"Hyderabad"
+    });
+
+    marker2['infowindow'] = new google.maps.InfoWindow({
       content:"Hyderabad"
     });
 
