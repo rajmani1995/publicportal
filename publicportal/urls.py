@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^loginuser/','authentication.views._login'),
     url(r'^signup/','authentication.views.signup'),
     url(r'^dashboard/','authentication.views.dashboard'),
+    url(r'^sendposition/','foundation.views.getData'),
     url(r'^$','authentication.views.index'),
 )
 
@@ -27,4 +28,3 @@ if settings.DEBUG:
             'document_root': settings.STATIC_ROOT,
         }),
 )
-
