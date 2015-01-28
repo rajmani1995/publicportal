@@ -70,7 +70,7 @@ def signup(request):
 
 def _logout(request):
     logout(request)
-    return HttpResponseRedirect('/login')
+    return HttpResponseRedirect('/')
 
 def dashboard(request):
     return render(request,'user/dashboard.html',{'title':request.user.username+"Dashboard"})
