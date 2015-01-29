@@ -126,12 +126,17 @@
     function sendData(initData){
         $.ajax({
           type: "POST",
+          datatype:"json",
+          async:true,
           url: "/sendposition",
-          data: { latitude: initData.lat(), longitude: initData.lng() }
-      })
-        .done(function( msg ) {
-            alert( "Data Saved: " + msg );
-        });
+          data: { 
+            csrfmiddlewaretoken: '{{csrf_token}}',
+            latitude: initData.lat(), 
+            longitude: initData.lng() },
+          success: function( msg ) {
+            alert( "Data Saved: " + msg.msg );
+        }
+      });
     }
 </script>
 
