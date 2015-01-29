@@ -73,4 +73,5 @@ def _logout(request):
     return HttpResponseRedirect('/')
 
 def dashboard(request):
-    return render(request,'user/dashboard.html',{'title':request.user.username+"Dashboard"})
+    return render(request,'index.html',{'title':request.user.username+" Dashboard"})
+    # Should render dashboard.html template, index is used for temp workaround

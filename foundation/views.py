@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import Http404,HttpResponseRedirect,HttpResponse
 from foundation.models import Mapobject
 from django.contrib.auth.models import User
+import json
 # Create your views here.
 def render_to_json(request, data):
     return HttpResponse(
@@ -9,12 +10,12 @@ def render_to_json(request, data):
         mimetype=request.is_ajax() and "application/json" or "text/html"
     )
 
-def getData(request):
-	if request.method=="POST" and request.is_ajax():
+def sendposition(request):
+	if request.method == "POST" and request.is_ajax():
 		response_data={}
 		latitude = request.POST.get('latitude',"")
 		longitude = request.POST.get('longitude',"")
-		print latitude
+		print "latitude"+str(latitude)+" longitude: "+str(longitude)
 		user = request.user
 		print user
 		# mapdata = Mapobject()
