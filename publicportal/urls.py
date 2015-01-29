@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^loginuser/','authentication.views._login'),
     url(r'^signup/','authentication.views.signup'),
     url(r'^dashboard/','authentication.views.dashboard'),
+    url(r'^complain/','foundation.views.complain'),
     url(r'^sendposition/','foundation.views.sendposition'),
     url(r'^$','authentication.views.index'),
 )

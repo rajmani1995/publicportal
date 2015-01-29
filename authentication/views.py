@@ -20,8 +20,8 @@ def get_client_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     return ip
 
-# def _loginpage(request):
-# 	return render(request,'auth/login.html',{'title':"Login"})
+def _loginpage(request):
+	return render(request,'auth/login.html',{'title':"Login"})
 
 def _login(request):
     if request.method == 'POST':
@@ -73,5 +73,5 @@ def _logout(request):
     return HttpResponseRedirect('/')
 
 def dashboard(request):
-    return render(request,'index.html',{'title':request.user.username+" Dashboard"})
+    return render(request,'index.html',{'title':"Dashboard"})
     # Should render dashboard.html template, index is used for temp workaround
