@@ -27,7 +27,6 @@ def _login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print username,password
         user = authenticate(username=username,password=password)
         if user is not None:
             if user.is_active:

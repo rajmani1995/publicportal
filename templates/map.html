@@ -45,6 +45,7 @@
     alert("Please login");
     {% else %}
     sendData(initialLocation);
+    setMarker(initialLocation);
     {% endif %}
     }, function() {
       handleNoGeolocation(browserSupportFlag);
@@ -96,6 +97,21 @@
           map: map
       }).setEditable(true);
 
+      function setMarker(initialLocation){
+          
+          marker = new google.maps.Marker({
+            position: initialLocation,
+            title: "Your location",
+            map: map,
+            draggable: false,
+            animation: google.maps.Animation.DROP
+        });
+
+        marker['infowindow'] = new google.maps.InfoWindow({
+          content:"Your location"
+        });
+
+        }
         // Show the default red marker at the location
         marker = new google.maps.Marker({
             position: latLng,
@@ -120,7 +136,6 @@
         marker2['infowindow'] = new google.maps.InfoWindow({
           content:"Hyderabad"
       });
-
         google.maps.event.addListener(marker, 'mouseover', function() {
             this['infowindow'].open(map, this);
         });
