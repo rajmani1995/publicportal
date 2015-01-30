@@ -2,3 +2,4 @@
 venv/*
 authentication/*.pyc
 publicportal/*.pyc
+publicportal/settings.py
