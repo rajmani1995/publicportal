@@ -40,33 +40,45 @@ def _login(request):
             messages.error(request,"Invalid username/password.")
             return HttpResponseRedirect('/login')
 
-def signup(request):
-    registered=False
-    if request.method == 'POST':
-        user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
-        if user_form.is_valid() and profile_form.is_valid():
-            
-            user = user_form.save(commit=False)
-            user.set_password(user.password)
-            user.is_active=True
-            user.save()
-            profile = profile_form.save(commit=False)
-            profile.user = user
-            profile.lastLoginDate = datetime.now()
-            profile.ipaddress=get_client_ip(request)
-            # if request.FILES['picture']:
-            #     profile.picture = request.FILES['picture']
-            profile.save()
-            registered = True
-        else:
-            print user_form.errors, profile_form.errors,request.POST
-            messages.info(request,str(user_form.errors)+str(profile_form.errors))
-    else:
-        user_form = UserForm()
-        profile_form = UserProfileForm()
-    return render(request,'auth/signup.html',{'title':"Signup",'userform':user_form,'profileform':profile_form,'registered':registered})
+# def signup(request):
+#     registered=False
+#     if request.method == 'POST':
+#         user_form = UserForm(data=request.POST)
+#         profile_form = UserProfileForm(data=request.POST)
+#         if user_form.is_valid() and profile_form.is_valid():
+#             user = user_form.save(commit=False)
+#             user.set_password(user.password)
+#             user.is_active=True
+#             user.save()
+#             profile = profile_form.save(commit=False)
+#             profile.user = user
+#             profile.lastLoginDate = datetime.now()
+#             profile.ipaddress=get_client_ip(request)
+#             if request.FILES['picture']:
+#                 profile.picture = request.FILES['picture']
+#             profile.save()
+#             registered = True
+#         else:
+#             print user_form.errors, profile_form.errors,request.POST
+#             messages.info(request,str(user_form.errors)+str(profile_form.errors))
+#     else:
+#         user_form = UserForm()
+#         profile_form = UserProfileForm()
+#     return render(request,'auth/signup.html',{'title':"Signup",'userform':user_form,'profileform':profile_form,'registered':registered})
 
+def signup(request):
+    if request.method == 'POST':
+        username = request.POST.get('username',"")
+        password = request.POST.get('password',"")
+        email = request.POST.get('email',"")
+        firstname = request.POST.get('firstname',"")
+        lastname = request.POST.get('lastname',"")
+        user = User.object.create_user(username,email,password)
+        user.first_name = firstname
+        user.lastname = lastname
+        user.save()
+        messages.info(request,"Successfully registered")
+        return HttpResponseRedirect('/')
 def _logout(request):
     logout(request)
     return HttpResponseRedirect('/')

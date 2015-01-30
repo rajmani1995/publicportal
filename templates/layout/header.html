@@ -2,14 +2,14 @@
 {% load staticfiles %}
 <html class="st-layout ls-top-navbar ls-bottom-footer show-sidebar sidebar-l1 sidebar-r1-xs" lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>{{title}} | GEAR Systems</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>{{title}} | GEAR Systems</title>
 
-    <link href="{% static "css/theme-core.css" %}" rel="stylesheet">
+	<link href="{% static "css/theme-core.css" %}" rel="stylesheet">
     <!-- Standalone Modules
     As a convenience, we provide the entire UI framework broke down in separate modules
     Some of the standalone modules may have not been used with the current theme/module
@@ -33,186 +33,191 @@
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=drawing"></script>
 </head>
 <body>
-    <!-- Wrapper required for sidebar transitions -->
-    <div class="st-container">
-        <!-- Fixed navbar -->
-        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a href="#sidebar-menu" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a href="#sidebar-map" data-toggle="sidebar-menu" class="toggle pull-right visible-xs"><i class="fa fa-map-marker"></i></a>
-                    <img src="{% static "img/logo.png" %}" alt="Logo">
-                    <a class="navbar-brand" href="index.html">&nbsp;GEAR</a></img>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse" id="main-nav">
-                    <form class="navbar-form navbar-left margin-none">
-                        <div class="search-1">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                                <input type="text" class="form-control form-control-w-150" placeholder="Search ..">
-                            </div>
-                        </div>
-                    </form>
-                    <ul class="nav navbar-nav navbar-right">
-                      {% if not user.is_authenticated %}
-                        <!-- Login -->
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-fw fa-lock"></i> Login
-                            </a>
-                            <div class="dropdown-menu dropdown-size-280">
-                                <form id="loginform" method="POST" action="/loginuser/">
-                                  {% csrf_token %}
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                            <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2"
-                                            id="login-username"
-                                            name="username">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="fa fa-shield"></i></span>
-                                            <input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon2" id="login-password" name="password">
-                                        </div>
-                                    </div>
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-primary">Login <i class="fa fa-sign-in"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                        <!-- // END login -->
-                        <!-- Sign up -->
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-fw fa-plus"></i> Sign Up
-                            </a>
-                            <div class="dropdown-menu dropdown-size-280">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group form-control-default">
-                                                <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Your first name">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group form-control-default">
-                                                <input type="text" class="form-control" id="exampleInputLastName" placeholder="Your last name">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group form-control-default required">
-                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                                    </div>
-                                    <div class="form-group form-control-default required">
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </form>
-                            </div>
-                        </li>
-                        <!-- // END sign up -->
-                        {% elif user.is_authenticated %}
-                        <!-- user -->
-                        <!-- Show after login -->
-                        <li class="dropdown user">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="https://randomuser.me/api/portraits/med/women/59.jpg" alt="" class="img-circle" id="randomimage"/>{{user.username}}<span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#"><i class="fa fa-user"></i>Profile</a>
-                                </li>
-                                <li><a href="#"><i class="fa fa-wrench"></i>Settings</a>
-                                </li>
-                                <li><a href="/logout"><i class="fa fa-sign-out"></i>Logout</a>
-                                </li>
-                            </ul>
-                        </li>
-                        {% endif %}
-                        <!-- End after login part -->
-                        <!-- // END user -->
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-        </div>
-        <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
-        <div class="sidebar left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-blue sidebar-visible-desktop" id="sidebar-menu" data-type="collapse">
-            <div data-scrollable>
-                <ul class="sidebar-menu sm-bordered sm-icons-block sm-icons-right">
-                    <li class="hasSubmenu open active">
-                        <a href="#discover"><i class="fa fa-star"></i><span>Nearby Problems</span></a>
-                        <ul id="discover" class="in">
-                            <li class="active"><a href="index.html"><i class="fa fa-map-marker"></i><span>Map View</span></a>
-                            </li>
-                            <li class="active"><a href="#"><i class="fa fa-list"></i><span>List View</span></a></li>
-                            <li class="active"><a href="#"><i class="fa fa-grid"></i><span>Grid View</span></a></li>
-                        </ul>
-                    </li>
-                    <li class="hasSubmenu">
-                        <a href="#property"><i class="fa fa-home"></i><span>Filter By</span></a>
-                        <ul id="property">
-                            <li><a href="#"><i class="fa fa-transh-o"></i><span>Garbage</span></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-road"></i><span>Roads</span></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-street-view"></i><span>Streetlights</span></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-power-off"></i><span>Electrical</span></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-dot-circle-o"></i><span>Potholes</span></a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        {% block content %}{% endblock %}
-        <!-- Footer -->
-        <div class="footer">
-            <strong>GEAR Systems</strong> v.0.0.1 &copy; Copyright 2015
-        </div>
-        <!-- // Footer -->
-    </div>
-    <!-- Inline Script for colors and config objects; used by various external scripts; -->
-    <script>
-    var colors = {
-        "danger-color": "#e74c3c",
-        "success-color": "#81b53e",
-        "warning-color": "#f0ad4e",
-        "inverse-color": "#2c3e50",
-        "info-color": "#2d7cb5",
-        "default-color": "#6e7882",
-        "default-light-color": "#cfd9db",
-        "purple-color": "#9D8AC7",
-        "mustard-color": "#d4d171",
-        "lightred-color": "#e15258",
-        "body-bg": "#f6f6f6"
-    };
-    var config = {
-        debug: true,
-        theme: "real-estate",
-        skins: {
-            "default": {
-                "primary-color": "#3498db"
-            }
-        }
-    };
-    </script>
-    <!-- Separate Vendor Script Bundles -->
-    <script type="text/javascript" src="{% static "js/vendor-core.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/vendor-forms.min.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/module-layout.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/module-sidebar.js" %}"></script>
-    <script type="text/javascript" src="{% static "js/theme-core.js" %}"></script>
+	<!-- Wrapper required for sidebar transitions -->
+	<div class="st-container">
+		<!-- Fixed navbar -->
+		<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a href="#sidebar-menu" data-toggle="sidebar-menu" class="toggle pull-left visible-xs"><i class="fa fa-bars"></i></a>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="#sidebar-map" data-toggle="sidebar-menu" class="toggle pull-right visible-xs"><i class="fa fa-map-marker"></i></a>
+					<img src="{% static "img/logo.png" %}" alt="Logo">
+					<a class="navbar-brand" href="index.html">&nbsp;GEAR</a></img>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="main-nav">
+					<form class="navbar-form navbar-left margin-none">
+						<div class="search-1">
+							<div class="input-group">
+								<span class="input-group-addon"><i class="fa fa-search"></i></span>
+								<input type="text" class="form-control form-control-w-150" placeholder="Search ..">
+							</div>
+						</div>
+					</form>
+					<ul class="nav navbar-nav navbar-right">
+						{% if not user.is_authenticated %}
+						<!-- Login -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-fw fa-lock"></i> Login
+							</a>
+							<div class="dropdown-menu dropdown-size-280">
+								<form id="loginform" method="POST" action="/loginuser/">
+									{% csrf_token %}
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-user"></i></span>
+											<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2"
+											id="login-username"
+											name="username">
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-shield"></i></span>
+											<input type="password" class="form-control" placeholder="Password" aria-describedby="sizing-addon2" id="login-password" name="password">
+										</div>
+									</div>
+									<div class="text-center">
+										<button type="submit" class="btn btn-primary">Login <i class="fa fa-sign-in"></i>
+										</button>
+									</div>
+								</form>
+							</div>
+						</li>
+						<!-- // END login -->
+						<!-- Sign up -->
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-fw fa-plus"></i> Sign Up
+							</a>
+							<div class="dropdown-menu dropdown-size-280">
+								<form>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group form-control-default">
+												<input type="text" class="form-control" id="firstName" name="firstname" placeholder="Your first name">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group form-control-default">
+												<input type="text" class="form-control" id="lastName" name="lastname" placeholder="Your last name">
+											</div>
+										</div>
+									</div>
+									<div class="form-group form-control-default required">
+										<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+									</div>
+									<div class="form-group form-control-default required">
+										<input type="password" class="form-control" id="pwd" name="password" placeholder="Password">
+									</div>
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</form>
+							</div>
+						</li>
+						<!-- // END sign up -->
+						{% elif user.is_authenticated %}
+						<!-- user -->
+						<!-- Show after login -->
+						<li class="dropdown user">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img src="https://randomuser.me/api/portraits/med/women/59.jpg" alt="" class="img-circle" id="randomimage"/>{{user.username}}<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#"><i class="fa fa-user"></i>Profile</a>
+								</li>
+								<li><a href="#"><i class="fa fa-wrench"></i>Settings</a>
+								</li>
+								<li><a href="/logout"><i class="fa fa-sign-out"></i>Logout</a>
+								</li>
+							</ul>
+						</li>
+						{% endif %}
+						<!-- End after login part -->
+						<!-- // END user -->
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+		</div>
+		{%for message in messages%}
+		<div class="alert alert-{{message.tags}} alert-dismissible" role="alert" style="text-align:center;">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{message}}
+		</div>
+		{%endfor%}
+		<!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
+		<div class="sidebar left sidebar-size-1 sidebar-mini-reveal sidebar-offset-0 sidebar-skin-blue sidebar-visible-desktop" id="sidebar-menu" data-type="collapse">
+			<div data-scrollable>
+				<ul class="sidebar-menu sm-bordered sm-icons-block sm-icons-right">
+					<li class="hasSubmenu open active">
+						<a href="#discover"><i class="fa fa-star"></i><span>Nearby Problems</span></a>
+						<ul id="discover" class="in">
+							<li class="active"><a href="index.html"><i class="fa fa-map-marker"></i><span>Map View</span></a>
+							</li>
+							<li class="active"><a href="#"><i class="fa fa-list"></i><span>List View</span></a></li>
+							<li class="active"><a href="#"><i class="fa fa-grid"></i><span>Grid View</span></a></li>
+						</ul>
+					</li>
+					<li class="hasSubmenu">
+						<a href="#property"><i class="fa fa-home"></i><span>Filter By</span></a>
+						<ul id="property">
+							<li><a href="#"><i class="fa fa-transh-o"></i><span>Garbage</span></a>
+							</li>
+							<li><a href="#"><i class="fa fa-road"></i><span>Roads</span></a>
+							</li>
+							<li><a href="#"><i class="fa fa-street-view"></i><span>Streetlights</span></a>
+							</li>
+							<li><a href="#"><i class="fa fa-power-off"></i><span>Electrical</span></a>
+							</li>
+							<li><a href="#"><i class="fa fa-dot-circle-o"></i><span>Potholes</span></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		{% block content %}{% endblock %}
+		<!-- Footer -->
+		<div class="footer">
+			<strong>GEAR Systems</strong> v.0.0.1 &copy; Copyright 2015
+		</div>
+		<!-- // Footer -->
+	</div>
+	<!-- Inline Script for colors and config objects; used by various external scripts; -->
+	<script>
+	var colors = {
+		"danger-color": "#e74c3c",
+		"success-color": "#81b53e",
+		"warning-color": "#f0ad4e",
+		"inverse-color": "#2c3e50",
+		"info-color": "#2d7cb5",
+		"default-color": "#6e7882",
+		"default-light-color": "#cfd9db",
+		"purple-color": "#9D8AC7",
+		"mustard-color": "#d4d171",
+		"lightred-color": "#e15258",
+		"body-bg": "#f6f6f6"
+	};
+	var config = {
+		debug: true,
+		theme: "real-estate",
+		skins: {
+			"default": {
+				"primary-color": "#3498db"
+			}
+		}
+	};
+	</script>
+	<!-- Separate Vendor Script Bundles -->
+	<script type="text/javascript" src="{% static "js/vendor-core.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/vendor-forms.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/module-layout.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/module-sidebar.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/theme-core.js" %}"></script>
 </body>
