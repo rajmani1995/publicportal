@@ -12,5 +12,7 @@ class UserProfile(models.Model):
     # picture = models.ImageField(upload_to='profile_pictures',blank=True)
     ipaddress = models.URLField(max_length=25)
     lastLoginDate = models.DateTimeField(blank=True)
+    complaintCount = models.IntegerField(default=0)
+    
     def __unicode__(self):
     	return self.user.first_name

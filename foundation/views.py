@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import Http404,HttpResponseRedirect,HttpResponse
-from foundation.models import Mapobject,Complain
+from foundation.models import Mapobject,Complaint
 from django.contrib.auth.models import User,AnonymousUser
 import json
 # Create your views here.
@@ -35,7 +35,7 @@ def complain(request):
 		description = request.POST.get('description',"")
 		difficulty=request.POST.get('difficulty',"")
 		anonycheck=request.POST.get('anonycheck',"")
-		comp=Complain()
+		comp=Complaint()
 		comp.title=title
 		comp.type=complaintype
 		comp.description=description
