@@ -3,3 +3,5 @@ venv/*
 authentication/*.pyc
 publicportal/*.pyc
 publicportal/settings.py
+authentication/migrations/*
+foundation/migrations/*
