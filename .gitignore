@@ -5,3 +5,4 @@ publicportal/*.pyc
 publicportal/settings.py
 authentication/migrations/*
 foundation/migrations/*
+media/complaint_images/*

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import Http404,HttpResponseRedirect,HttpResponse
 from foundation.models import Mapobject,Complaint
+from django.contrib import messages
 from django.contrib.auth.models import User,AnonymousUser
 import json
 # Create your views here.
@@ -26,7 +27,7 @@ def sendposition(request):
 		response_data['message']='Successful submission'
 		return HttpResponse(json.dumps(response_data),content_type="application/json")
 	else:
-		print "nee abba"
+		print "not a POST request....your form should seek a doctor"
 
 def complain(request):
 	if request.method=="POST":
@@ -36,6 +37,8 @@ def complain(request):
 		difficulty=request.POST.get('difficulty',"")
 		anonycheck=request.POST.get('anonycheck',"")
 		comp=Complaint()
+		if 'picture' in request.FILES:
+			comp.image = request.FILES['picture']
 		comp.title=title
 		comp.type=complaintype
 		comp.description=description
@@ -45,8 +48,10 @@ def complain(request):
 		else:
 			comp.user=0
 		comp.save()
+		messages.info(request,"Complaint has been registered!")
 		return HttpResponseRedirect('/complain/')
 	return render(request,'user/complaint.html',{'title':'Complain'})
-	# if request.method == "POST" and request.is_ajax():
-	# 	response_data={}
-	# 	pass
+
+def viewcomplaints(request):
+	complains=Complaint.objects.all()
+	return render(request,'user/viewcomplaints.html',{'title':'View Complaints','complains':complains})

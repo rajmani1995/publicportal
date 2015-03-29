@@ -12,12 +12,12 @@ class Complaint(models.Model):
 	location = models.CharField(max_length = 100)
 	latitude = models.CharField(max_length = 30)
 	longitude = models.CharField(max_length = 30)
-
+	# rating = models.FloatField()
+	image = models.ImageField(upload_to='complaint_images',blank=True)
+	def __unicode__(self):
+		return self.title
 class Mapobject(models.Model):
 	user = models.OneToOneField(User)
 	location = models.CharField(max_length = 100)
 	latitude = models.CharField(max_length = 30)
 	longitude = models.CharField(max_length = 30)
-
-
-

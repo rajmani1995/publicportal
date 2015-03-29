@@ -10,19 +10,20 @@
 		<div class="sidebar-block padding-none">
 			<div data-toggle="gridalicious" data-width="200">
 				<!-- Per Complaint Listing -->
+				{% for item in complains %}
 				<div class="panel panel-default">
 					<div class="cover hover overlay margin-none">
 						<div class="ribbon-mark">
 							<span class="caret caret-primary"></span>
 							<span class="text">New</span>
 						</div>
-						<a href="property.html" class="overlay overlay-full overlay-bg-black overlay-hover">
+						<a href="#" class="overlay overlay-full overlay-bg-black overlay-hover">
 							<span class="v-center">
 								<span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
 							</span>
 						</a>
-						<a href="property.html">
-							<img src="http://placehold.it/100x100" alt="location" class="img-responsive" />
+						<a href="#">
+							<img src="/media/{{item.image}}" alt="location" class="img-responsive" />
 						</a>
 					</div>
 					<div class="list-group">
@@ -34,20 +35,22 @@
 								<span class="fa fa-fw fa-star-o text-yellow-800"></span>
 								<span class="fa fa-fw fa-star-o text-yellow-800"></span>
 							</p>
-							<strong class="text-primary">Latitude, Longitude</strong>
+							<strong class="text-primary">Location: {{item.location}}</strong>
 						</div>
 						<div class="list-group-item">
-							<i class="fa fa-fw icon-home-fill-1"></i> Type of Complaint
+							<i class="fa fa-fw icon-home-fill-1"></i> {{item.type}}
 						</div>
 						<div class="list-group-item text-center">
-							<a href="property.html" class="btn btn-primary"><i class="fa fa-fw fa-info"></i> Get Details</a>
+							<a href="#" class="btn btn-primary"><i class="fa fa-fw fa-info"></i> Get Details</a>
 						</div>
 					</div>
 				</div>
+				{% endfor %}
 				<!-- End of per complaint listing -->
 			</div>
 		</div>
 		<div class="sidebar-block equal-padding">
+		<!-- This needs to be done programmatically -->
 			<ul class="pagination margin-none">
 				<li class="disabled"><a href="#">&laquo;</a>
 				</li>

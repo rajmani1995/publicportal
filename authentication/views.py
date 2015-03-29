@@ -3,13 +3,15 @@ from django.http import Http404,HttpResponseRedirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 from django.contrib import messages
+from foundation.models import Complaint
 from authentication.forms import UserForm,UserProfileForm
 from datetime import datetime
 # Create your views here.
 
 def index(request):
-	title = "Homepage"
-	return render(request,"index.html",{'title':title})
+    title = "Homepage"
+    complains=Complaint.objects.all()
+    return render(request,"index.html",{'title':title,'complains':complains})
 
 #Function get ip address of user
 def get_client_ip(request):
