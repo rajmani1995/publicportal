@@ -11,6 +11,7 @@ from datetime import datetime
 def index(request):
     title = "Homepage"
     complains=Complaint.objects.all()
+    # complains=None
     return render(request,"index.html",{'title':title,'complains':complains})
 
 #Function get ip address of user

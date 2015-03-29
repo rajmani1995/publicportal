@@ -9,6 +9,7 @@
 		<h4 class="category">Recently Posted Complaints</h4>
 		<div class="sidebar-block padding-none">
 			<div data-toggle="gridalicious" data-width="200">
+			{% if complains %}
 				<!-- Per Complaint Listing -->
 				{% for item in complains %}
 				<div class="panel panel-default">
@@ -47,6 +48,9 @@
 				</div>
 				{% endfor %}
 				<!-- End of per complaint listing -->
+				{% else %}
+				<h1>No complains made yet!</h1>
+				{% endif %}
 			</div>
 		</div>
 		<div class="sidebar-block equal-padding">
