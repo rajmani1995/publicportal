@@ -1,4 +1,4 @@
-{% extends "layout/header.html"%} {%block content %}
+{% extends "layout/header.djt"%} {%block content %}
 <div class="st-pusher">
     <div class="st-content">
         <!-- extra div for emulating position:fixed of the menu -->

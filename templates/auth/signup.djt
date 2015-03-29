@@ -1,4 +1,4 @@
-{% extends "layout/header.html" %}{%load staticfiles %}{%load widget_tweaks %}
+{% extends "layout/header.djt" %}{%load staticfiles %}{%load widget_tweaks %}
 {% block content %}
 {%if registered%}
 <div class="jumbotron">

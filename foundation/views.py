@@ -11,24 +11,6 @@ def render_to_json(request, data):
         mimetype=request.is_ajax() and "application/json" or "text/html"
     )
 
-def sendposition(request):
-	if request.method == "POST" and request.is_ajax():
-		response_data={}
-		latitude = request.POST.get('latitude',"")
-		longitude = request.POST.get('longitude',"")
-		# print "latitude"+str(latitude)+" longitude: "+str(longitude)
-		user = request.user
-		# print user
-		mapdata = Mapobject()
-		mapdata.user=user
-		mapdata.latitude=latitude
-		mapdata.longitude=longitude
-		mapdata.save()
-		response_data['message']='Successful submission'
-		return HttpResponse(json.dumps(response_data),content_type="application/json")
-	else:
-		print "not a POST request....your form should seek a doctor"
-
 def complain(request):
 	if request.method=="POST":
 		title=request.POST.get('title',"")
@@ -50,8 +32,8 @@ def complain(request):
 		comp.save()
 		messages.info(request,"Complaint has been registered!")
 		return HttpResponseRedirect('/complain/')
-	return render(request,'user/complaint.html',{'title':'Complain'})
+	return render(request,'user/complaint.djt',{'title':'Complain'})
 
 def viewcomplaints(request):
 	complains=Complaint.objects.all()
-	return render(request,'user/viewcomplaints.html',{'title':'View Complaints','complains':complains})
+	return render(request,'user/viewcomplaints.djt',{'title':'View Complaints','complains':complains})

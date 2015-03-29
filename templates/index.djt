@@ -1,4 +1,4 @@
-{% extends "layout/header.html" %}
+{% extends "layout/header.djt" %}
 
 {% block content %}
 <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
@@ -110,6 +110,6 @@
 </div>
 <!-- /st-pusher -->
 
-{% include "map.html" %}
+{% include "map.djt" %}
 
 {% endblock %}

@@ -12,7 +12,7 @@ def index(request):
     title = "Homepage"
     complains=Complaint.objects.all()
     # complains=None
-    return render(request,"index.html",{'title':title,'complains':complains})
+    return render(request,"index.djt",{'title':title,'complains':complains})
 
 #Function get ip address of user
 def get_client_ip(request):
@@ -87,5 +87,5 @@ def _logout(request):
     return HttpResponseRedirect('/')
 
 def dashboard(request):
-    return render(request,'index.html',{'title':"Dashboard"})
+    return render(request,'index.djt',{'title':"Dashboard"})
     # Should render dashboard.html template, index is used for temp workaround

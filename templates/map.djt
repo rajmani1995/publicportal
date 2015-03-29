@@ -42,9 +42,9 @@
           map.setCenter(initialLocation);
     console.log("Your position is Latitude: "+initialLocation.lat()+" and Longitude: "+initialLocation.lng());
     {% if not user.is_authenticated %}
-    alert("Please login");
+    console.log("user hasnt logged in!");
     {% else %}
-    sendData(initialLocation);
+    // sendData(initialLocation);
     setMarker(initialLocation);
     {% endif %}
     }, function() {
@@ -142,21 +142,6 @@
     }
 
     google.maps.event.addDomListener(window, 'load', showGoogleMaps);
-    function sendData(initData){
-        $.ajax({
-          type: "POST",
-          datatype:"json",
-          async:true,
-          url: "/sendposition/",
-          data: { 
-            csrfmiddlewaretoken: '{{csrf_token}}',
-            latitude: initData.lat(), 
-            longitude: initData.lng() },
-          success: function( msg ) {
-            alert( "Data Saved: " + msg.message );
-        }
-      });
-    }
 </script>
 
 <div id="googlemaps"></div>
