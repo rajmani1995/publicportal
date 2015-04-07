@@ -15,6 +15,7 @@ urlpatterns = patterns('',
     url(r'^dashboard/','authentication.views.dashboard'),
     url(r'^complain/','foundation.views.complain'),
     url(r'^viewcomplaints/','foundation.views.viewcomplaints'),
+    url(r'^leaderboard/', 'authentication.views.leaderboard'),
     url(r'^$','authentication.views.index'),
 )
 

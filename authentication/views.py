@@ -89,3 +89,6 @@ def _logout(request):
 def dashboard(request):
     return render(request,'index.djt',{'title':"Dashboard"})
     # Should render dashboard.html template, index is used for temp workaround
+
+def leaderboard(request):
+    return render(request, 'user/leaderboard.djt')
