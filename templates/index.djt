@@ -18,11 +18,6 @@
 							<span class="caret caret-primary"></span>
 							<span class="text">New</span>
 						</div>
-						<a href="#" class="overlay overlay-full overlay-bg-black overlay-hover">
-							<span class="v-center">
-								<span class="btn btn-circle btn-white"><i class="fa fa-eye"></i></span>
-							</span>
-						</a>
 						<a href="#">
 							<img src="/media/{{item.image}}" alt="location" class="img-responsive" />
 						</a>
