@@ -14,10 +14,6 @@
 				{% for item in complains %}
 				<div class="panel panel-default">
 					<div class="cover hover overlay margin-none">
-						<div class="ribbon-mark">
-							<span class="caret caret-primary"></span>
-							<span class="text">New</span>
-						</div>
 						<a href="#">
 							<img src="/media/{{item.image}}" alt="location" class="img-responsive" />
 						</a>
