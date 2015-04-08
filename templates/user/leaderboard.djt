@@ -10,7 +10,7 @@
     <title>ThemeKit</title>
     <!-- Compressed Vendor BUNDLE
     Includes vendor (3rd party) styling such as the customized Bootstrap and other 3rd party libraries used for the current theme/module -->
-    <link href="css/vendor.min.css" rel="stylesheet">
+    <link href="{% static "css/vendor.min.css" %}" rel="stylesheet">
     <!-- Compressed Theme BUNDLE
 Note: The bundle includes all the custom styling required for the current theme, however
 it was tweaked for the current theme/module and does NOT include ALL of the standalone modules;
@@ -35,6 +35,7 @@ This variant is to be used when loading the separate styling modules -->
     <link rel="stylesheet" type="text/css" href="{% static "css/module-timeline.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/module-chat.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/module-charts.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/module-maps.min.css" %}">
     
     
     <!-- <link href="css/module-colors-alerts.min.css" rel="stylesheet" /> -->
