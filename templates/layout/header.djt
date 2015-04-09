@@ -10,6 +10,7 @@
 	<title>{{title}} | GEAR Systems</title>
 
 	<link href="{% static "css/theme-core.min.css" %}" rel="stylesheet">
+	<link href="{% static "css/vendor.min.css" %}" rel="stylesheet">
     <!-- Standalone Modules
     As a convenience, we provide the entire UI framework broke down in separate modules
     Some of the standalone modules may have not been used with the current theme/module
@@ -19,6 +20,12 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/module-sidebar.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/module-sidebar-skins.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/module-navbar.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/module-maps.min.css" %}">
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/module-media.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/module-timeline.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/module-chat.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/module-charts.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/module-maps.min.css" %}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries

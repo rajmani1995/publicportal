@@ -1,6 +1,131 @@
 {% extends "layout/header.djt" %}
 
 {% block content %}
+
+<!-- this is modal for each get detail button -->
+<div class="modal slide-down fade" id="modal-slide-down">
+    <div class="modal-dialog">
+        <div class="v-cell">
+            <div class="modal-content modal-lg">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body" style="background:#ecf0f1;">
+                    <div class="row">
+                    <!--photo area -->
+                    <div class="col-md-6">
+                    <!-- get the image from tab clicked ## we can use JS for it -->
+                    <img src="images/food1-full.jpg" style="width:400px;height:300px">
+                    </div>
+                    <div class="col-md-6" style="font-size:30px">
+                         <span style="font-size:24px;">Rating</span>&nbsp;
+                        <!-- get the rating from backend and fill it dynamically -->
+                        <i class="md md-star"></i>
+                        <i class="md md-star"></i>
+                        <i class="md md-star"></i>
+                        <i class="md md-star-half"></i>
+                        <i class="md md-star-outline"></i>
+                        &nbsp;3.5
+                    </div>
+                    <div class="col-md-6" style="margin-top:10px;">
+                    
+                                <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <form>
+                                                <div class="form-group form-control-default">
+                                                            <label for="exampleInputFirstName">Write Comment</label>
+                                                            <textarea class="form-control" rows="5" style="margin: 0px -1.515625px 0px 0px; width: 100%; height: 50px;"></textarea>
+                                                </div>
+
+                                                <!-- Write JS for it ##dynamic stars for rating -->
+                                                <div class="form-group form-control-default" style="font-size:20px">
+                                                    <i class="md md-star-outline"></i>
+                                                    <i class="md md-star-outline"></i>
+                                                    <i class="md md-star-outline"></i>
+                                                    <i class="md md-star-outline"></i>
+                                                    <i class="md md-star-outline"></i>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </form>
+                                        </div>
+                                </div>
+
+                    </div>
+                    
+                    </div>
+                    <!-- this media data is fetched from backend -->
+                    <div class="media">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img src="images/people/110/woman-5.jpg" width="40" alt="woman" class="img-rounded media-object">
+                                </a>
+                            </div>
+                            <div class="media-body message">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading panel-heading-white">
+                                        <div class="pull-right">
+                                            <small class="text-muted">2 min ago</small>
+                                        </div>
+                                        <a href="#">Mary D.</a>
+                                    </div>
+                                    <div class="panel-body" style="padding-top:0">
+                                        Hi Bill,
+                                        <br> Is it ok if we schedule the meeting tomorrow?
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                         <div class="media" style="margin-top:0;">
+                            <div class="media-left">
+                                <a href="#">
+                                    <img src="images/people/110/woman-4.jpg" width="40" alt="woman" class="img-rounded media-object">
+                                </a>
+                            </div>
+                            <div class="media-body message">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading panel-heading-white">
+                                        <div class="pull-right">
+                                            <small class="text-muted">2 min ago</small>
+                                        </div>
+                                        <a href="#">Miley S.</a>
+                                    </div>
+                                    <div class="panel-body" style="padding-top:0">
+                                        this place is so dirty !!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer padding-none text-center">
+                                            <ul class="pagination">
+                                                <li class="disabled"><a href="#">«</a>
+                                                </li>
+                                                <li class="active"><a href="#">1</a>
+                                                </li>
+                                                <li><a href="#">2</a>
+                                                </li>
+                                                <li><a href="#">3</a>
+                                                </li>
+                                                <li><a href="#">4</a>
+                                                </li>
+                                                <li><a href="#">5</a>
+                                                </li>
+                                                <li><a href="#">»</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                </div>
+               <!--  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end of modals -->
+
 <!-- Sidebar component with st-effect-1 (set on the toggle button within the navbar) -->
 <div class="sidebar right sidebar-size-xs-1 sidebar-size-lg-48pc sidebar-size-40pc sidebar-offset-0 sidebar-skin-white" id="sidebar-map" data-toggle-layout="sidebar-r-48pc-lg,sidebar-r-40pc" data-toggle-bar="true" data-overlay=false>
 	<div data-scrollable>
@@ -33,7 +158,7 @@
 							<i class="fa fa-fw icon-home-fill-1"></i> {{item.type}}
 						</div>
 						<div class="list-group-item text-center">
-							<a href="#" class="btn btn-primary"><i class="fa fa-fw fa-info"></i> Get Details</a>
+							<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modal-slide-down"><i class="fa fa-fw fa-info"></i> Get Details</a>
 						</div>
 					</div>
 				</div>
