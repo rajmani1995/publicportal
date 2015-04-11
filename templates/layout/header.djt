@@ -28,6 +28,8 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/module-charts.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/module-maps.min.css" %}">
 
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!-- If you don't need support for Internet Explorer <= 8 you can safely remove these -->

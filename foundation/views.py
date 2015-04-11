@@ -19,8 +19,9 @@ def complain(request):
 		difficulty=request.POST.get('difficulty',"")
 		anonycheck=request.POST.get('anonycheck',"")
 		comp=Complaint()
-		if 'picture' in request.FILES:
-			comp.image = request.FILES['picture']
+		# if 'picture' in request.FILES:
+		comp.image = request.FILES['picture']
+		print comp.image
 		comp.title=title
 		comp.type=complaintype
 		comp.description=description
@@ -29,6 +30,7 @@ def complain(request):
 			comp.user=request.user.id
 		else:
 			comp.user=0
+		comp.location="Warangal"
 		comp.save()
 		messages.info(request,"Complaint has been registered!")
 		return HttpResponseRedirect('/complain/')
