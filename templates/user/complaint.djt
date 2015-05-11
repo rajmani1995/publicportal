@@ -1,4 +1,43 @@
 {% extends "layout/header.djt"%} {%block content %}
+<script type="text/javascript">
+
+if(navigator.geolocation) {
+    browserSupportFlag = true;
+    navigator.geolocation.getCurrentPosition(function(position) {
+    initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+    var geocoder = geocoder = new google.maps.Geocoder();  
+    geocoder.geocode({ 'latLng': initialLocation }, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        if (results[1]) {
+                            console.log("Location: " + results[1].formatted_address );
+                            var loc_field= document.getElementById("loc");
+                            loc_field.value = results[1].formatted_address;
+                        }
+                    }
+                });
+            
+
+
+
+    console.log("Your position is Latitude: "+initialLocation.lat()+" and Longitude: "+initialLocation.lng());
+    {% if not user.is_authenticated %}
+    console.log("user hasnt logged in!");
+    {% else %}
+    console.log("user has logged in!");
+
+    {% endif %}
+    var lat_field= document.getElementById("lat");
+    lat_field.value = ""+initialLocation.lat();
+    var lon_field= document.getElementById("lon");
+    lon_field.value = initialLocation.lng();
+    }, function() {
+      handleNoGeolocation(browserSupportFlag);
+    });
+    }
+    
+
+</script>
+
 <div class="st-pusher">
     <div class="st-content">
         <!-- extra div for emulating position:fixed of the menu -->
@@ -15,6 +54,30 @@
                                             <div class="form-group form-control-default">
                                                 <label for="title">Title</label>
                                                 <input type="text" class="form-control" name="title" id="title" placeholder="Title for complaint">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row hidden">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-control-default">
+                                                <label for="lat">Latitude</label>
+                                                <input type="text" class="form-control" name="lat" id="lat">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row hidden">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-control-default">
+                                                <label for="lon">Longitude</label>
+                                                <input type="text" class="form-control" name="lon" id="lon">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row hidden">
+                                        <div class="col-md-12">
+                                            <div class="form-group form-control-default">
+                                                <label for="loc">Location</label>
+                                                <input type="text" class="form-control" name="loc" id="loc">
                                             </div>
                                         </div>
                                     </div>

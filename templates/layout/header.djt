@@ -57,7 +57,7 @@
 					</button>
 					<a href="#sidebar-map" data-toggle="sidebar-menu" class="toggle pull-right visible-xs"><i class="fa fa-map-marker"></i></a>
 					<img src="{% static "img/logo.png" %}" alt="Logo">
-					<a class="navbar-brand" href="index.html">&nbsp;GEAR</a></img>
+					<a class="navbar-brand" href="/dashboard">&nbsp;GEAR</a></img>
 				</div>
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="main-nav">

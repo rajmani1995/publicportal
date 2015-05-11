@@ -134,9 +134,9 @@
 		<h4 class="category">Recently Posted Complaints</h4>
 		<div class="sidebar-block padding-none">
 			<div data-toggle="gridalicious" data-width="200">
-			{% if complains %}
+			{% if complaints %}
 				<!-- Per Complaint Listing -->
-				{% for item in complains %}
+				{% for item in complaints %}
 				<div class="panel panel-default">
 					<div class="cover hover overlay margin-none">
 						<a href="#">
