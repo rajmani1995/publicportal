@@ -87,7 +87,10 @@ def _logout(request):
     return HttpResponseRedirect('/')
 
 def dashboard(request):
-    return render(request,'index.djt',{'title':"Dashboard"})
+    complaints= Complaint.objects.all()
+    # for complaint in complaints:
+    #     print complaint.title
+    return render(request,'index.djt',{'title':"Dashboard",'complaints':complaints})
     # Should render dashboard.html template, index is used for temp workaround
 
 def leaderboard(request):

@@ -5,6 +5,7 @@
     // The latitude and longitude of your business / place
     var position = [17.3660, 78.4760];
     var position2 = [17.3655, 78.4517];
+    // var position2 = [18.0, 79.58];
 
     function showGoogleMaps() {
 
@@ -45,7 +46,15 @@
     console.log("user hasnt logged in!");
     {% else %}
     // sendData(initialLocation);
-    setMarker(initialLocation);
+    setMarker(initialLocation,"Your loc");
+    {% if complaints %}
+      console.log("complaints present to mark");
+      {% for complaint in complaints %}
+        loc = new google.maps.LatLng({{ complaint.latitude }},{{ complaint.longitude }});
+        setMarker(loc,"{{ complaint.location }}");
+      {% endfor %}
+    {% endif %}
+
     {% endif %}
     }, function() {
       handleNoGeolocation(browserSupportFlag);
@@ -97,20 +106,22 @@
           map: map
       }).setEditable(true);
 
-      function setMarker(initialLocation){
+      function setMarker(initialLocation,location){
           
           marker = new google.maps.Marker({
             position: initialLocation,
-            title: "Your location",
+            title: location,
             map: map,
             draggable: false,
             animation: google.maps.Animation.DROP
         });
 
         marker['infowindow'] = new google.maps.InfoWindow({
-          content:"Your location"
+          content:location
         });
-
+        google.maps.event.addListener(marker, 'mouseover', function() {
+            this['infowindow'].open(map, this);
+        });
         }
         // Show the default red marker at the location
         marker = new google.maps.Marker({
