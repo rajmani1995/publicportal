@@ -12,6 +12,7 @@ class Complaint(models.Model):
 	location = models.CharField(max_length = 100)
 	latitude = models.CharField(max_length = 30)
 	longitude = models.CharField(max_length = 30)
+	approved = models.BooleanField(default=True)
 	# rating = models.FloatField()
 	image = models.ImageField(upload_to='complaint_images',blank=True)
 	def __unicode__(self):
