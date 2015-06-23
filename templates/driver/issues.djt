@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Driver Navigation | GEAR Systems</title>
+	<link rel="stylesheet" href={% static "css/style.css" %}>
+	<script src={% static "js/jquery.js" %}></script>
+	<script src={% static "js/bootstrap.min.js" %}></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+	{# // <script src={% static "js/issues.js" %}></script> #}
+	<script type="text/javascript">
+
+	function toRad(Value) {
+		    /** Converts numeric degrees to radians */
+		    return Value * Math.PI / 180;
+		}
+
+	function getDistance(lat1,lng1,lat2,lng2) {
+	lat1 = toRad(lat1);
+	lat2 = toRad(lat2);
+	lng1 = toRad(lng1);
+	lng2 = toRad(lng2);
+    var R = 6371;
+    var dist = Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lng1 - lng2)) *R; 
+    return dist;   
+  }
+
+$(document).ready(function() {
+            // variables for different issue properties
+        	var issueNo, issueDetails, issueLocationLatitude, issueLocationLongitude, issueDate, issueImportance, driveRoute;
+            // resolved stores all the resolved issued and current stores all the current issues
+        	var resolved = [], current_normal = [], current_danger = [], current_warning = [];
+           
+
+        	if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                current_pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                console.log("Your position is Latitude: "+current_pos.lat()+" and Longitude: "+current_pos.lng());
+                {% for issue in issues %}
+                    distance = getDistance(current_pos.lat(),current_pos.lng(),{{issue.latitude}},{{issue.longitude}});
+                    if (distance <5){
+                    	issueNo = {{issue.id}};
+                    	issueDetails = "{{issue.description}}";
+                    	issueLocationLatitude = {{issue.latitude}};
+                    	issueLocationLongitude = {{issue.longitude}};
+                    	issueDate = "";
+                    	iDate = "";
+                    	var iTime = "";
+                    	istatus = "Current";
+		                issueImportance = "normal";
+		        		// driveRoute = "<a href='"+issueList[i].route+"' class=\"btn btn-warning\">Route here</a>";
+		                driveRoute = "<a href='/drivenav/route/"+{{issue.id}} + "/' class=\"btn btn-warning\">Route here</a>";
+		                var day = iDate.split('-')[2];
+		                var month = iDate.split('-')[1];
+		                var year = iDate.split('-')[0];
+		                switch(month){
+		                    case '01':  month = 'Jan';break;
+		                    case '02':  month = 'Feb';break;
+		                    case '03':  month = 'Mar';break;
+		                    case '04':  month = 'Apr';break;
+		                    case '05':  month = 'May';break;
+		                    case '06':  month = 'Jun';break;
+		                    case '07':  month = 'Jul';break;
+		                    case '08':  month = 'Aug';break;
+		                    case '09':  month = 'Sep';break;
+		                    case '10':  month = 'Oct';break;
+		                    case '11':  month = 'Nov';break;
+		                    case '12':  month = 'Dec';break;
+		                }
+		                if(istatus === "Resolved") {
+        					resolved.push("<tr><td>"+issueNo + "</td><td>" + issueDetails + "</td><td>[" + issueLocationLatitude + "," + issueLocationLongitude + "]</td><td>" + day + '-' + month + '-' + year +', '+iTime + "</td><td>" + driveRoute + "</td></tr>");
+		        		}
+		        		else if(istatus === "Current") {
+		                    if (issueImportance === "danger") {
+		                        current_danger.push("<tr class=\"danger\"><td>"+issueNo + "</td><td>" + issueDetails + "</td><td>[" + issueLocationLatitude + "," + issueLocationLongitude + "]</td><td>" + day + "-" + month + "-" + year +", "+iTime + "</td><td>" + driveRoute + "</td></tr>");
+		                    }
+		                    else if (issueImportance === "warning") {
+		                        current_warning.push("<tr class=\"warning\"><td>"+issueNo + "</td><td>" + issueDetails + "</td><td>[" + issueLocationLatitude + "," + issueLocationLongitude + "]</td><td>" + day + "-" + month + "-" + year +", "+iTime + "</td><td>" + driveRoute + "</td></tr>");
+		                    }
+		                    else {
+		                        current_normal.push("<tr><td>"+issueNo + "</td><td>" + issueDetails + "</td><td>[" + issueLocationLatitude + "," + issueLocationLongitude + "]</td><td>" + day + "-" + month + "-" + year +", "+iTime + "</td><td>" + driveRoute + "</td></tr>");
+		        		    }
+		                }
+
+                    }
+                {% endfor %}
+                //pushing the required data in the required table
+	        	$('#current').append(current_danger);
+	            $('#current').append(current_warning);
+	            $('#current').append(current_normal);
+	        	$('#resolved').append(resolved);
+              });
+            } else { 
+                alert ("Geolocation is not supported by this browser.");
+            }
+
+        	
+    
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+
+
+
+
+
+
+
+
+
+</head>
+<style>
+</style>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Driver Navigation Portal | GEAR Systems</a>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#currentIssues" data-toggle="tab">Current Issues</a></li>
+				<li><a href="#resolvedIssues" data-toggle="tab">Resolved Issues</a></li>
+				<li class="disabled"><a>Administration</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+				<div class="tab-pane fade active in" id="currentIssues">
+					<p>Total Number of resolved issues on a total</p>
+					<div class="progress progress-striped active">
+						<div class="progress-bar" style="width: 45%"></div>
+					</div>
+					<h1>Here is a list of current issues to be resolved</h1>
+					<table class="table table-striped table-hover ">
+						<thead>
+							<tr>
+								<th>Issue Number</th>
+								<th>Issue Details</th>
+								<th>Issue Location</th>
+								<th>Issue Date</th>
+								<th>Drive route</th>
+								</tr>
+						</thead>
+						<tbody id="current">
+						<!--{# {% for issue in issues %}
+							<tr>
+								<td>{{ issue.id}}</td>
+								<td>{{issue.description}}</td>
+								<td>[{{issue.latitude}}, {{issue.longitude}}]</td>
+								<td>time</td>
+								<td><a href='/drivenav/route' class="btn btn-warning">Route here</a></td>
+							</tr>
+						{% endfor %} #}-->
+						</tbody>
+					</table> 
+				</div>
+				<div class="tab-pane fade" id="resolvedIssues">
+					<p>Total Number of resolved issues on a total</p>
+					<div class="progress progress-striped active">
+						<div class="progress-bar" style="width: 45%"></div>
+					</div>
+					<h1>Here is a list of  issues to be resolved</h1>
+					<table class="table table-striped table-hover " id="resolved">
+						<thead>
+							<tr>
+								<th>Issue Number</th>
+								<th>Issue Details</th>
+								<th>Issue Location</th>
+								<th>Issue Date</th>
+								<th>Drive route</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table> 
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

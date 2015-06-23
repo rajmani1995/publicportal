@@ -17,6 +17,10 @@ urlpatterns = patterns('',
     url(r'^viewcomplaints/','foundation.views.viewcomplaints'),
     url(r'^leaderboard/', 'authentication.views.leaderboard'),
     url(r'^$','authentication.views.index'),
+    url(r'^drivenav/index/','drivenav.views.index'),
+    url(r'^drivenav/issues/','drivenav.views.issues'),
+    url(r'^drivenav/route/(?P<issue_id>\d+)/$','drivenav.views.route',name = 'route'),
+    url(r'^drivenav/testjson/','drivenav.views.test'),
 )
 
 

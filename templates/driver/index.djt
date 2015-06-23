@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Driver Navigation | GEAR Systems</title>
+	<link rel="stylesheet" href={% static "css/style.css" %}>
+	<script src={% static "js/jquery.js" %}></script>
+	<script src={% static "js/bootstrap.min.js" %}></script>
+</head>
+<style>
+</style>
+<body>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Driver Navigation Portal | GEAR Systems</a>
+			</div>
+		</div>
+	</nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6" id="left-side">
+				<img src={% static "img/driver.png" %} alt="">
+			</div>
+			<div class="col-lg-6" id="right-side">
+				<div class="jumbotron">
+					<h1>Hi Mr.Driver</h1>
+					<p>Welcome Back to the On Field Issue resolving system. It looks like a few issues are assigned to you to resolve in the areas surrounding you</p>
+					<p><a class="btn btn-primary btn-lg" href="/drivenav/issues/">Click Here to View your Issues</a></p>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<a href="#" class="btn btn-success btn-block">In Progress</a>
+					</div>
+					<div class="col-lg-6">
+						<a href="#" class="btn btn-info btn-block">Resolved</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
