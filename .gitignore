@@ -7,3 +7,5 @@ authentication/migrations/*
 foundation/migrations/*
 media/complaint_images/*
 media/needsapproval/*
+drivenav/migrations/*
+templates/driver/data/*
