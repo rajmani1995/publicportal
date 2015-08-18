@@ -1,0 +1,17 @@
+.bubble{
+    width: 50%;
+    height: auto;
+    border-width: 2px;
+    border-style: solid;
+    padding:10px;
+}
+
+.left{
+    border-color: green;
+    float: left;
+}
+
+.right{
+    border-color: red;
+    float: right;
+}

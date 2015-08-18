@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/module-chat.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/module-charts.min.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/module-maps.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/chatbot.css" %}">
 
 
 
@@ -230,5 +231,6 @@
 	<script type="text/javascript" src="{% static "js/module-sidebar.min.js" %}"></script>
 	<script type="text/javascript" src="{% static "js/theme-core.min.js" %}"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-cookies.js"></script>
     <script src="{% static "js/chat.js" %}"></script>
 </body>

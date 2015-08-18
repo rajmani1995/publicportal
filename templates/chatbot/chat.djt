@@ -1,25 +1,29 @@
 {% extends "layout/header.djt" %}
 {% block content %}
 
-{% angularjs %}
-<div class="row" style="height: 90%;" ng-app="ChatBot">
-	<div class="col-sm-11 col-sm-offset-1" ng-controller="ChatScreen as Chat">
-		<div class="bubble" ng-repeat="chat in Chat.chats">
-		<p>{{chat}}</p>
+{% verbatim %}
+<div ng-app="ChatBot" style="height: 100%;" >
+<div ng-controller="ChatScreen as Chat" style="height: 100%;">
+<div class="row" style="height: 90%;">
+	<div class="col-sm-11 col-sm-offset-1">
+	
+		<div class="row bubble-left" ng-repeat="chat in chats">
+		<p ng-if="chat.uid == 0" class="bubble left">{{ chat.message}}</p>
+		<p ng-if="chat.uid == 1" class="bubble right">{{ chat.message}}</p>
 		</div>
 	</div>
 </div>
 <div class="row" style="height: 10%;">
- <form ng-submit="addchat()"
-    style="margin-top:30px;">
+ <form ng-submit="addchat()" style="margin-top:30px;">
 	<div class="col-sm-9 col-sm-offset-1">
-		<input type="text" class="form-control" id="usr" ng-model="newchat">
+		<input type="text" class="form-control" ng-model="newchat">
 	</div>
 	<div class="col-sm-2">
 	 <button type="submit" class="btn btn-primary">Post</button>
 	</div>
 </form>	  
 </div>
-{% endangularjs %}
-
+</div>
+</div>
+{% endverbatim %}
 {% endblock %}

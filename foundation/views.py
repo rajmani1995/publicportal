@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_protect
 from django.http import Http404,HttpResponseRedirect,HttpResponse
 from foundation.models import Mapobject,Complaint
 from django.contrib import messages
@@ -71,3 +72,14 @@ def viewcomplaints(request):
 
 def chatbot(request):
 	return render(request,'chatbot/chat.djt',{'title':'Chat Bot'})
+
+@csrf_protect
+def livechatbot(request):
+	new_msg='Checking'
+	if request.method == 'POST':
+		response_data = {}
+		new_msg=request.POST.get('content')
+		new_msg=new_msg+" Modifed ......"
+		response_data['message'] = new_msg
+		response_data['uid'] = 0
+	return HttpResponse(json.dumps(response_data), content_type="application/json")
