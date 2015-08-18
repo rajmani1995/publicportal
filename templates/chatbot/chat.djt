@@ -1,0 +1,25 @@
+{% extends "layout/header.djt" %}
+{% block content %}
+
+{% angularjs %}
+<div class="row" style="height: 90%;" ng-app="ChatBot">
+	<div class="col-sm-11 col-sm-offset-1" ng-controller="ChatScreen as Chat">
+		<div class="bubble" ng-repeat="chat in Chat.chats">
+		<p>{{chat}}</p>
+		</div>
+	</div>
+</div>
+<div class="row" style="height: 10%;">
+ <form ng-submit="addchat()"
+    style="margin-top:30px;">
+	<div class="col-sm-9 col-sm-offset-1">
+		<input type="text" class="form-control" id="usr" ng-model="newchat">
+	</div>
+	<div class="col-sm-2">
+	 <button type="submit" class="btn btn-primary">Post</button>
+	</div>
+</form>	  
+</div>
+{% endangularjs %}
+
+{% endblock %}

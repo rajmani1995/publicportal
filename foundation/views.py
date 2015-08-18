@@ -68,3 +68,6 @@ def complain(request):
 def viewcomplaints(request):
 	complains=Complaint.objects.filter(approved = True)
 	return render(request,'user/viewcomplaints.djt',{'title':'View Complaints','complains':complains})
+
+def chatbot(request):
+	return render(request,'chatbot/chat.djt',{'title':'Chat Bot'})
